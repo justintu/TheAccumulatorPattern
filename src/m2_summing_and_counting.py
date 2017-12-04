@@ -7,9 +7,9 @@ A subsequent module lets you practice the ACCUMULATOR pattern in another classic
    IN GRAPHICS:   x = x + pixels
 
 Authors: David Mutchler, Dave Fisher, Valerie Galluzzi, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
-
+         their colleagues and Justin.
+"""  # done: 1. PUT YOUR NAME IN THE ABOVE LINE.
+import math
 
 # ----------------------------------------------------------------------
 # Students: As you work each of these problems, ask yourself:
@@ -31,7 +31,7 @@ def main():
 def run_test_sum_more_cosines():
     """ Tests the   sum_more_cosines   function. """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement this TEST function.
+    # done: 2. Implement this TEST function.
     #   It TESTS the  sum_more_cosines  function defined below.
     #   Include at least **   3   ** tests (we wrote one for you).
     #
@@ -62,6 +62,11 @@ def run_test_sum_more_cosines():
     print('Test 1 expected:', expected, '(approximately)')
     print('       actual:  ', answer)
 
+    expected2 = 0.02082
+    answer2 = sum_more_cosines(-4, 1)
+    print("Test 2 expect:", expected2, "(approximately)")
+    print("       actual:", answer2)
+
     # ------------------------------------------------------------------
     # TO DO: 2 (continued).
     # Below this comment, add 2 more test cases of your own choosing.
@@ -69,21 +74,30 @@ def run_test_sum_more_cosines():
 
 
 def sum_more_cosines(m, n):
-    """
-    What comes in:  The two arguments are integers m and n, with m <= n.
-    What goes out:  Returns the sum
-       cos(m) + cos(m+1) + cos(m+2) +  ...  cos(n)
-    Side effects:   None.
-    Examples:
-      -- sum_more_cosines(0, 3)  returns
-            cos(0) + cos(1) + cos(2) + cos(3)
-         which is approximately 0.13416
-      -- sum_more_cosines(-4, 1)  returns
-            cos(-4) + cos(-3) + cos(-2) + cos(-1) + cos(0) + cos(1)
-         which is approximately 0.02082.
-    """
+
+    total = 0
+    for k in range(n - m + 1):
+        total = total + math.cos(k + m)
+
+    return total
+
+
+
+    # """
+    # What comes in:  The two arguments are integers m and n, with m <= n.
+    # What goes out:  Returns the sum
+    #    cos(m) + cos(m+1) + cos(m+2) +  ...  cos(n)
+    # Side effects:   None.
+    # Examples:
+    #   -- sum_more_cosines(0, 3)  returns
+    #         cos(0) + cos(1) + cos(2) + cos(3)
+    #      which is approximately 0.13416
+    #   -- sum_more_cosines(-4, 1)  returns
+    #         cos(-4) + cos(-3) + cos(-2) + cos(-1) + cos(0) + cos(1)
+    #      which is approximately 0.02082.
+    # """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # done: 3. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #   That is called TEST-DRIVEN DEVELOPMENT (TDD).
     #
@@ -99,7 +113,7 @@ def sum_more_cosines(m, n):
 def run_test_count_sines_from():
     """ Tests the   count_sines_from   function. """
     # ------------------------------------------------------------------
-    # TODO: 4. Implement this TEST function.
+    # done: 4. Implement this TEST function.
     #   It TESTS the  count_sines_from  function defined below.
     #   Include at least **   6   ** tests (we wrote one for you).
     #              ** Yes, 6 (six) tests. **
@@ -117,6 +131,31 @@ def run_test_count_sines_from():
     print('Test 1 expected:', expected)
     print('       actual:  ', answer)
 
+    # test 2:
+    answer2 = count_sines_from(1, 10)
+    print("Test sin from 1 to 10")
+    print(answer2)
+
+    # test 3:
+    answer3 = count_sines_from(-3, 4)
+    print("Test sin from -3 to 4")
+    print(answer3)
+
+    # test 4
+    answer4 = count_sines_from(25, 100)
+    print("Test sin from 25 to 100")
+    print(answer4)
+
+    # test 5
+    answer5 = count_sines_from(-100, 1)
+    print("Test sin from -100 to 1")
+    print(answer5)
+
+    # test 6
+    answer6 = count_sines_from(49, 71)
+    print("Test sin from 49 to 71")
+    print(answer6)
+
     # ------------------------------------------------------------------
     # TO DO: 4 (continued).
     # Below this comment, add 5 more test cases of your own choosing.
@@ -124,6 +163,13 @@ def run_test_count_sines_from():
 
 
 def count_sines_from(m, n):
+    countsin = 0
+
+    for k in range(n - m + 1):
+        if math.sin(k + m) < 0.5:
+            countsin += 1
+
+    return countsin
     """
     What comes in:  The two arguments are integers m and n, with m <= n.
     What goes out:  Returns the number of integers from m to n,
@@ -143,7 +189,7 @@ def count_sines_from(m, n):
       -- count_sines_from(9, 9)  returns  1
     """
     # ------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # done: 5. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #
     # IMPORTANT: As in previous problems in this session,
@@ -155,7 +201,7 @@ def count_sines_from(m, n):
 def run_test_count_sines_vs_cosines():
     """ Tests the   count_sines_vs_cosines   function. """
     # ------------------------------------------------------------------
-    # TODO: 6. Implement this TEST function.
+    # done: 6. Implement this TEST function.
     #   It TESTS the  count_sines_vs_cosines  function defined below.
     #   Include at least **   6   ** tests (we wrote one for you).
     #              ** Yes, 6 (six) tests. **
@@ -173,6 +219,27 @@ def run_test_count_sines_vs_cosines():
     print('Test 1 expected:', expected)
     print('       actual:  ', answer)
 
+    # test 2
+    answer2 = count_sines_vs_cosines(5)
+    print("test SVC 5")
+    print(answer2)
+
+    # test 3
+    answer3 = count_sines_vs_cosines(3)
+    print("test SVC 3")
+    print(answer3)
+
+    # test 4
+    answer4 = count_sines_vs_cosines(0)
+    print("test SVC 0")
+    print(answer4)
+
+    # test 5
+    answer5 = count_sines_vs_cosines(1)
+    print("test SVC 1")
+    print(answer5)
+
+
     # ------------------------------------------------------------------
     # TO DO: 6 (continued).
     # Below this comment, add 5 more test cases of your own choosing.
@@ -180,6 +247,13 @@ def run_test_count_sines_vs_cosines():
 
 
 def count_sines_vs_cosines(m):
+    count = 0
+
+    for k in range(2*m + 1):
+        if math.sin(k - m) > math.cos(k - m):
+            count += 1
+    return count
+
     """
     What comes in:  The sole argument is a non-negative integer m.
     What goes out:  Returns the number of integers from -m to m,
@@ -204,7 +278,7 @@ def count_sines_vs_cosines(m):
       -- Also:  count_sines_vs_cosines(101) returns 100 (trust me!)
     """
     # ------------------------------------------------------------------
-    # TODO: 7. Implement and test this function.
+    # done: 7. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     #
     # IMPORTANT: As in previous problems in this session,
